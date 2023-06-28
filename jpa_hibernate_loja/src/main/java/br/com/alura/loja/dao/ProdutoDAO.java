@@ -43,4 +43,9 @@ public class ProdutoDAO {
 		return em.createQuery(jpql, Produto.class).setParameter(1, nome).getResultList();
 	}
 
+	public BigDecimal buscarPrecoDoProdutoComNome(String nome) {
+		String jpql = "SELECT p.preco FROM Produto p WHERE p.nome = :nome";
+		return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getSingleResult();
+	}
+
 }

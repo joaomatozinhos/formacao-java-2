@@ -22,7 +22,7 @@ public class CadastroDePedido {
 		EntityManager em = JpaUtil.getEntityManager();
 		ProdutoDAO produtoDao = new ProdutoDAO(em);
 		ClienteDAO clienteDao = new ClienteDAO(em);
-		Produto produto = produtoDao.buscaPorId(1l);
+		Produto produto = produtoDao.buscaPorId(3l);
 		Cliente cliente = clienteDao.buscaPorId(1l);
 
 		em.getTransaction().begin();
@@ -34,6 +34,10 @@ public class CadastroDePedido {
 		pedidoDao.cadastra(pedido);
 
 		em.getTransaction().commit();
+
+		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+		System.out.println("VALOT TOTAL VENDIDO: " + totalVendido);
+
 		em.close();
 	}
 

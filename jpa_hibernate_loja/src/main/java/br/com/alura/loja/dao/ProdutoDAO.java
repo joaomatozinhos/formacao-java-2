@@ -29,18 +29,17 @@ public class ProdutoDAO {
 	}
 
 	public List<Produto> buscaPorNome(String nome) {
-		String jpql = "SELECT p FROM Produto p WHERE p.nome = ?1";
-		return em.createQuery(jpql, Produto.class).setParameter(1, nome).getResultList();
+		String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome";
+		return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
 	}
 
 	public List<Produto> buscaPorNomeEPreco(String nome, BigDecimal preco) {
-		String jpql = "SELECT p FROM Produto p WHERE p.nome = ?1 AND p.preco = ?2";
-		return em.createQuery(jpql, Produto.class).setParameter(1, nome).setParameter(2, preco).getResultList();
+		String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome AND p.preco = :preco";
+		return em.createQuery(jpql, Produto.class).setParameter("nome", nome).setParameter("preco", preco).getResultList();
 	}
 
 	public List<Produto> buscaPorNomeDaCategoria(String nome) {
-		String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = ?1";
-		return em.createQuery(jpql, Produto.class).setParameter(1, nome).getResultList();
+		return em.createNamedQuery("produtosPorCategoria", Produto.class).setParameter("nome", nome).getResultList();
 	}
 
 	public BigDecimal buscarPrecoDoProdutoComNome(String nome) {

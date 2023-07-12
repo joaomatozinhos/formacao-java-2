@@ -220,7 +220,7 @@ label {
 	line-height: 1.5;
 	padding: 0 0 .1em 1em;
 	font-weight: 700;
-	color: var(- -azul-medio);
+	color: var(--azul-medio);
 }
 
 input[type="submit"] {

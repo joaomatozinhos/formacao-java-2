@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import med.voll.api.endereco.Endereco;
 
 @Entity
@@ -66,6 +67,20 @@ public class Medico {
 
 	public Endereco getEndereco() {
 		return endereco;
+	}
+
+	public void atualizaDados(@Valid DadosEdicaoMedico dados) {
+		if (dados.nome() != null) {
+			this.nome = dados.nome();
+		}
+		
+		if (dados.telefone() != null) {
+			this.telefone = dados.telefone();
+		}
+		
+		if (dados.endereco() != null) {
+			this.endereco.atualizarDados(dados.endereco());
+		}
 	}
 
 }

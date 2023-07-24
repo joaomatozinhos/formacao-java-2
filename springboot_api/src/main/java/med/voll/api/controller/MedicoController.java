@@ -50,7 +50,8 @@ public class MedicoController {
 	@DeleteMapping("/exclusao/{id}")
 	@Transactional
 	public void exclui(@PathVariable Long id) {
-		repository.deleteById(id);
+		Medico medico = repository.getReferenceById(id);
+		medico.exclui();
 	}
 
 }

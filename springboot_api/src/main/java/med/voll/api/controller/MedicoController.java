@@ -49,8 +49,15 @@ public class MedicoController {
 	public ResponseEntity<Page<DadosListagemMedico>> listaTodos(
 			@PageableDefault(size = 10, sort = { "nome" }) Pageable paginacao) {
 		Page<DadosListagemMedico> page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
-		
+
 		return ResponseEntity.ok(page);
+	}
+
+	@GetMapping("/detalhes/{id}")
+	public ResponseEntity<DadosDetalhamentoMedico> detalha(@PathVariable Long id) {
+		Medico medico = repository.getReferenceById(id);
+
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 
 	@PutMapping("/edicao")

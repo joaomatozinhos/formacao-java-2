@@ -33,9 +33,18 @@ public class AgendaDeConsultas {
 
 		Medico medico = escolheMedico(dados);
 		Paciente paciente = pacienteRepository.getReferenceById(dados.idPaciente());
-		Consulta consulta = new Consulta(null, medico, paciente, dados.data());
+		Consulta consulta = new Consulta(null, medico, paciente, dados.data(), null);
 
 		consultaRepository.save(consulta);
+	}
+	
+	public void cancela(DadosCancelamentoConsulta dados) throws ValidacaoException {
+	    if (!consultaRepository.existsById(dados.idConsulta())) {
+	        throw new ValidacaoException("O ID da consulta informado não existe!");
+	    }
+
+	    Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
+	    consulta.cancela(dados.motivo());
 	}
 
 	private Medico escolheMedico(DadosAgendamentoConsulta dados) throws ValidacaoException {

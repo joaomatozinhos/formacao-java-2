@@ -1,9 +1,12 @@
 package med.voll.api.domain.consulta;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.domain.ValidacaoException;
+import med.voll.api.domain.consulta.validacoes.ValidadorAgendamentoDeConsulta;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.medico.MedicoRepository;
 import med.voll.api.domain.paciente.Paciente;
@@ -21,6 +24,9 @@ public class AgendaDeConsultas {
 	@Autowired
 	private ConsultaRepository consultaRepository;
 
+	@Autowired
+	private List<ValidadorAgendamentoDeConsulta> validadores;
+
 	public void agenda(DadosAgendamentoConsulta dados) throws ValidacaoException {
 
 		if (!pacienteRepository.existsById(dados.idPaciente())) {
@@ -31,20 +37,28 @@ public class AgendaDeConsultas {
 			throw new ValidacaoException("O ID do médico informado não existe!");
 		}
 
+		validadores.forEach(validador -> {
+			try {
+				validador.valida(dados);
+			} catch (ValidacaoException e) {
+				e.printStackTrace();
+			}
+		});
+
 		Medico medico = escolheMedico(dados);
 		Paciente paciente = pacienteRepository.getReferenceById(dados.idPaciente());
 		Consulta consulta = new Consulta(null, medico, paciente, dados.data(), null);
 
 		consultaRepository.save(consulta);
 	}
-	
-	public void cancela(DadosCancelamentoConsulta dados) throws ValidacaoException {
-	    if (!consultaRepository.existsById(dados.idConsulta())) {
-	        throw new ValidacaoException("O ID da consulta informado não existe!");
-	    }
 
-	    Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
-	    consulta.cancela(dados.motivo());
+	public void cancela(DadosCancelamentoConsulta dados) throws ValidacaoException {
+		if (!consultaRepository.existsById(dados.idConsulta())) {
+			throw new ValidacaoException("O ID da consulta informado não existe!");
+		}
+
+		Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
+		consulta.cancela(dados.motivo());
 	}
 
 	private Medico escolheMedico(DadosAgendamentoConsulta dados) throws ValidacaoException {

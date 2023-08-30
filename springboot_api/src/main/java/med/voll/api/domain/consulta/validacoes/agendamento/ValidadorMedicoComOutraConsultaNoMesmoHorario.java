@@ -1,4 +1,4 @@
-package med.voll.api.domain.consulta.validacoes;
+package med.voll.api.domain.consulta.validacoes.agendamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorA
 	private ConsultaRepository repository;
 
 	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
-		boolean medicoPossuiOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndData(dados.idMedico(),
+		boolean medicoPossuiOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(),
 				dados.data());
 
 		if (medicoPossuiOutraConsultaNoMesmoHorario) {

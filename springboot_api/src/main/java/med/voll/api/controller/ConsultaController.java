@@ -27,8 +27,8 @@ public class ConsultaController {
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoConsulta> agenda(@RequestBody @Valid DadosAgendamentoConsulta dados)
 			throws ValidacaoException {
-		agenda.agenda(dados);
-		return ResponseEntity.ok(new DadosDetalhamentoConsulta(null, null, null, null));
+		DadosDetalhamentoConsulta dto = agenda.agenda(dados);
+		return ResponseEntity.ok(dto);
 	}
 
 	@DeleteMapping

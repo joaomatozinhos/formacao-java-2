@@ -11,7 +11,7 @@ import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 @Component("ValidadorHorarioAntecedenciaAgendamento")
 public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoDeConsulta {
 
-	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	public void valida(DadosAgendamentoConsulta dados) {
 		LocalDateTime dataConsulta = dados.data();
 		LocalDateTime agora = LocalDateTime.now();
 		Long diferencaEmMinutos = Duration.between(agora, dataConsulta).toMinutes();

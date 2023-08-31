@@ -26,12 +26,12 @@ public class AgendaDeConsultas {
 	private ConsultaRepository consultaRepository;
 
 	@Autowired
-	private List<ValidadorAgendamentoDeConsulta> validadores;
+	private List<ValidadorAgendamentoDeConsulta> validadoresAgendamento;
 
 	@Autowired
 	private List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
 
-	public DadosDetalhamentoConsulta agenda(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	public DadosDetalhamentoConsulta agenda(DadosAgendamentoConsulta dados) {
 
 		if (!pacienteRepository.existsById(dados.idPaciente())) {
 			throw new ValidacaoException("O ID do paciente informado não existe!");
@@ -41,12 +41,8 @@ public class AgendaDeConsultas {
 			throw new ValidacaoException("O ID do médico informado não existe!");
 		}
 
-		validadores.forEach(validador -> {
-			try {
-				validador.valida(dados);
-			} catch (ValidacaoException e) {
-				e.printStackTrace();
-			}
+		validadoresAgendamento.forEach(validador -> {
+			validador.valida(dados);
 		});
 
 		Medico medico = escolheMedico(dados);
@@ -63,24 +59,20 @@ public class AgendaDeConsultas {
 		return new DadosDetalhamentoConsulta(consulta);
 	}
 
-	public void cancela(DadosCancelamentoConsulta dados) throws ValidacaoException {
+	public void cancela(DadosCancelamentoConsulta dados) {
 		if (!consultaRepository.existsById(dados.idConsulta())) {
 			throw new ValidacaoException("O ID da consulta informado não existe!");
 		}
 
-		validadoresCancelamento.forEach(v -> {
-			try {
-				v.valida(dados);
-			} catch (ValidacaoException e) {
-				e.printStackTrace();
-			}
+		validadoresCancelamento.forEach(validador -> {
+			validador.valida(dados);
 		});
 
 		Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
 		consulta.cancela(dados.motivo());
 	}
 
-	private Medico escolheMedico(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	private Medico escolheMedico(DadosAgendamentoConsulta dados) {
 		if (dados.idMedico() != null && medicoRepository.existsById(dados.idMedico())) {
 			return medicoRepository.getReferenceById(dados.idMedico());
 		}

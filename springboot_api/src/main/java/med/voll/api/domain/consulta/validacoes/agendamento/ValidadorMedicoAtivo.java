@@ -13,7 +13,7 @@ public class ValidadorMedicoAtivo implements ValidadorAgendamentoDeConsulta {
 	@Autowired
 	private MedicoRepository repository;
 
-	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	public void valida(DadosAgendamentoConsulta dados) {
 		if (dados.idMedico() == null) {
 			return;
 		}

@@ -11,7 +11,7 @@ import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 @Component
 public class ValidadorHorarioFuncionamentoClinica implements ValidadorAgendamentoDeConsulta {
 
-	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	public void valida(DadosAgendamentoConsulta dados) {
 		LocalDateTime dataConsulta = dados.data();
 		boolean domingo = dataConsulta.getDayOfWeek().equals(DayOfWeek.SUNDAY);
 		boolean antesDaAberturaDaClinica = dataConsulta.getHour() < 7;

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.domain.ValidacaoException;
 import med.voll.api.domain.consulta.AgendaDeConsultas;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
@@ -25,15 +24,14 @@ public class ConsultaController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<DadosDetalhamentoConsulta> agenda(@RequestBody @Valid DadosAgendamentoConsulta dados)
-			throws ValidacaoException {
+	public ResponseEntity<DadosDetalhamentoConsulta> agenda(@RequestBody @Valid DadosAgendamentoConsulta dados) {
 		DadosDetalhamentoConsulta dto = agenda.agenda(dados);
 		return ResponseEntity.ok(dto);
 	}
 
 	@DeleteMapping
 	@Transactional
-	public ResponseEntity<Void> cancela(@RequestBody @Valid DadosCancelamentoConsulta dados) throws ValidacaoException {
+	public ResponseEntity<Void> cancela(@RequestBody @Valid DadosCancelamentoConsulta dados) {
 		agenda.cancela(dados);
 		return ResponseEntity.noContent().build();
 	}

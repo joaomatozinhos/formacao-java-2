@@ -9,13 +9,13 @@ import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 
 @Component
 public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorAgendamentoDeConsulta {
-	
+
 	@Autowired
 	private ConsultaRepository repository;
 
-	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
-		boolean medicoPossuiOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(),
-				dados.data());
+	public void valida(DadosAgendamentoConsulta dados) {
+		boolean medicoPossuiOutraConsultaNoMesmoHorario = repository
+				.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(), dados.data());
 
 		if (medicoPossuiOutraConsultaNoMesmoHorario) {
 			throw new ValidacaoException("Médico já possui outra consulta agendada nesse mesmo horário");

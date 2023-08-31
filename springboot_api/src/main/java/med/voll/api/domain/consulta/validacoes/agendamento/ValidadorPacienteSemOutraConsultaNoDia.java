@@ -15,7 +15,7 @@ public class ValidadorPacienteSemOutraConsultaNoDia implements ValidadorAgendame
 	@Autowired
 	private ConsultaRepository repository;
 
-	public void valida(DadosAgendamentoConsulta dados) throws ValidacaoException {
+	public void valida(DadosAgendamentoConsulta dados) {
 		LocalDateTime primeiroHorario = dados.data().withHour(7);
 		LocalDateTime ultimoHorario = dados.data().withHour(18);
 		boolean pacientePossuiOutraConsultaNoDia = repository.existsByPacienteIdAndDataBetween(dados.idPaciente(),

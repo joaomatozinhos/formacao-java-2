@@ -17,7 +17,7 @@ public class ValidadorHorarioAntecedencia implements ValidadorCancelamentoDeCons
 	private ConsultaRepository repository;
 
 	@Override
-	public void valida(DadosCancelamentoConsulta dados) throws ValidacaoException {
+	public void valida(DadosCancelamentoConsulta dados) {
 		var consulta = repository.getReferenceById(dados.idConsulta());
 		var agora = LocalDateTime.now();
 		var diferencaEmHoras = Duration.between(agora, consulta.getData()).toHours();

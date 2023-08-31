@@ -1,10 +1,9 @@
 package med.voll.api.domain.consulta.validacoes.agendamento;
 
-import med.voll.api.domain.ValidacaoException;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 
 public interface ValidadorAgendamentoDeConsulta {
 
-	void valida(DadosAgendamentoConsulta dados) throws ValidacaoException;
+	void valida(DadosAgendamentoConsulta dados);
 
 }

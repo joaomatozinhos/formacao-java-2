@@ -6,6 +6,7 @@ import javax.security.sasl.AuthenticationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
@@ -44,6 +45,11 @@ public class TratadorDeErros {
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<String> trataErroAcessoNegado() {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<?> tratarErro400(HttpMessageNotReadableException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
 
 	@ExceptionHandler(Exception.class)

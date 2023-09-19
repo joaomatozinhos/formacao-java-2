@@ -49,7 +49,7 @@ class MedicoControllerTest {
 	@WithMockUser
 	void cadastraCenario1() throws Exception {
 		MockHttpServletResponse response = mvc
-				.perform(post("/medicos")).andReturn()
+				.perform(post("/medicos/cadastro").contentType(MediaType.APPLICATION_JSON).content("")).andReturn()
 				.getResponse();
 
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
@@ -64,7 +64,7 @@ class MedicoControllerTest {
 
 		when(repository.save(any())).thenReturn(new Medico(dadosCadastro));
 
-		MockHttpServletResponse response = mvc.perform(post("/medicos").contentType(MediaType.APPLICATION_JSON)
+		MockHttpServletResponse response = mvc.perform(post("/medicos/cadastro").contentType(MediaType.APPLICATION_JSON)
 				.content(dadosCadastroMedicoJson.write(dadosCadastro).getJson())).andReturn().getResponse();
 
 		DadosDetalhamentoMedico dadosDetalhamento = new DadosDetalhamentoMedico(null, dadosCadastro.nome(),

@@ -77,7 +77,7 @@ class MedicoControllerTest {
 	}
 
 	private DadosEndereco dadosEndereco() {
-		return new DadosEndereco("rua xpto", "bairro", "00000000", "Brasilia", "DF", null, null);
+		return new DadosEndereco("rua xpto", "bairro", "00000-000", "Brasilia", "DF", null, null);
 	}
 
 }

@@ -10,4 +10,7 @@ Conteúdos estudados:
 - Spring Boot:
     - Desenvolvimento de uma API Rest com Spring Boot;
     - Boas práticas (tratamento do retorno e de erros);
-    - Segurança de uma API (autenticação, autorização e Token JWT) com Spring Security.
+    - Segurança de uma API (autenticação, autorização e Token JWT) com Spring Security;
+    - Documentação de uma API (Swagger);
+    - Testes automatizados com JUnit;
+    - Build e deploy da API.

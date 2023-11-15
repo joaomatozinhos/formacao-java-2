@@ -2,12 +2,11 @@ package br.com.alura.service;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Abrigo;
@@ -25,13 +24,13 @@ public class AbrigoService {
 
 		HttpResponse<String> response = client.disparaRequisicaoGet(uri);
 		String responseBody = response.body();
-		JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
+		Abrigo[] abrigos = new ObjectMapper().readValue(responseBody, Abrigo[].class);
+		List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
 
 		System.out.println("Abrigos cadastrados:");
-		for (JsonElement element : jsonArray) {
-			JsonObject jsonObject = element.getAsJsonObject();
-			long id = jsonObject.get("id").getAsLong();
-			String nome = jsonObject.get("nome").getAsString();
+		for (Abrigo abrigo : abrigoList) {
+			long id = abrigo.getId();
+			String nome = abrigo.getNome();
 			System.out.println(id + " - " + nome);
 		}
 	}

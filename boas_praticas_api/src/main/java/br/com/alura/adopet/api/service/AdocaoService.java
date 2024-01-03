@@ -2,6 +2,7 @@ package br.com.alura.adopet.api.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.AdocaoRepository;
 import br.com.alura.adopet.api.repository.PetRepository;
 import br.com.alura.adopet.api.repository.TutorRepository;
+import br.com.alura.adopet.api.validacoes.ValidacaoSolicitacaoAdocao;
 
 @Service
 public class AdocaoService {
@@ -32,12 +34,15 @@ public class AdocaoService {
 	@Autowired
 	private EmailService emailService;
 
+	@Autowired
+	private List<ValidacaoSolicitacaoAdocao> validacoes;
+
 	public void solicitar(SolicitacaoAdocaoDto dto) {
 
 		Pet pet = petRepository.getReferenceById(dto.idPet());
 		Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
 
-		// chamar as validacoes
+		validacoes.forEach(v -> v.validar(dto));
 
 		Adocao adocao = new Adocao();
 		adocao.setData(LocalDateTime.now());

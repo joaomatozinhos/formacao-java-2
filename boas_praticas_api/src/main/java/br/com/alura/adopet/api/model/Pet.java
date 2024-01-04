@@ -2,6 +2,7 @@ package br.com.alura.adopet.api.model;
 
 import java.util.Objects;
 
+import br.com.alura.adopet.api.dto.CadastroPetDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -41,6 +42,20 @@ public class Pet {
 
 	@OneToOne(mappedBy = "pet", fetch = FetchType.LAZY)
 	private Adocao adocao;
+
+	public Pet() {
+	}
+
+	public Pet(CadastroPetDto dto, Abrigo abrigo) {
+		this.tipo = dto.tipo();
+		this.nome = dto.nome();
+		this.raca = dto.raca();
+		this.idade = dto.idade();
+		this.cor = dto.cor();
+		this.peso = dto.peso();
+		this.abrigo = abrigo;
+		this.adotado = false;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -96,5 +111,4 @@ public class Pet {
 	public Adocao getAdocao() {
 		return adocao;
 	}
-
 }

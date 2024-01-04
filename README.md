@@ -14,3 +14,9 @@ Conteúdos estudados:
     - Documentação de uma API (Swagger);
     - Testes automatizados com JUnit;
     - Build e deploy da API.
+- Boas práticas em Java:
+  - Técnicas de refatoração de código;
+  - Princípios SOLID;
+  - Padrões de projeto (Design Patterns);
+  - Otimização de consultas ao banco de dados;
+  - Testes de unidade com JUnit e Mockito.

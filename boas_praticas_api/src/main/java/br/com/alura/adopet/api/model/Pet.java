@@ -1,148 +1,100 @@
 package br.com.alura.adopet.api.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 import java.util.Objects;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pets")
 public class Pet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @NotNull
-    @Column(name = "tipo")
-    private TipoPet tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoPet tipo;
 
-    @NotBlank
-    @Column(name = "nome")
-    private String nome;
+	private String nome;
 
-    @NotBlank
-    @Column(name = "raca")
-    private String raca;
+	private String raca;
 
-    @NotNull
-    @Column(name = "idade")
-    private Integer idade;
+	private Integer idade;
 
-    @NotBlank
-    @Column(name = "cor")
-    private String cor;
+	private String cor;
 
-    @NotNull
-    @Column(name = "peso")
-    private Float peso;
+	private Float peso;
 
-    @Column(name = "adotado")
-    private Boolean adotado;
+	private Boolean adotado;
 
-    @ManyToOne
-    @JsonBackReference("abrigo_pets")
-    @JoinColumn(name = "abrigo_id")
-    private Abrigo abrigo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Abrigo abrigo;
 
-    @OneToOne(mappedBy = "pet")
-    @JsonBackReference("adocao_pets")
-    private Adocao adocao;
+	@OneToOne(mappedBy = "pet", fetch = FetchType.LAZY)
+	private Adocao adocao;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pet pet = (Pet) o;
-        return Objects.equals(id, pet.id);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Pet pet = (Pet) o;
+		return Objects.equals(id, pet.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public TipoPet getTipo() {
+		return tipo;
+	}
 
-    public TipoPet getTipo() {
-        return tipo;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setTipo(TipoPet tipo) {
-        this.tipo = tipo;
-    }
+	public String getRaca() {
+		return raca;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public Integer getIdade() {
+		return idade;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getCor() {
+		return cor;
+	}
 
-    public String getRaca() {
-        return raca;
-    }
+	public Float getPeso() {
+		return peso;
+	}
 
-    public void setRaca(String raca) {
-        this.raca = raca;
-    }
+	public Boolean getAdotado() {
+		return adotado;
+	}
 
-    public Integer getIdade() {
-        return idade;
-    }
+	public Abrigo getAbrigo() {
+		return abrigo;
+	}
 
-    public void setIdade(Integer idade) {
-        this.idade = idade;
-    }
+	public Adocao getAdocao() {
+		return adocao;
+	}
 
-    public String getCor() {
-        return cor;
-    }
-
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
-
-    public Float getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Float peso) {
-        this.peso = peso;
-    }
-
-    public Boolean getAdotado() {
-        return adotado;
-    }
-
-    public void setAdotado(Boolean adotado) {
-        this.adotado = adotado;
-    }
-
-    public Abrigo getAbrigo() {
-        return abrigo;
-    }
-
-    public void setAbrigo(Abrigo abrigo) {
-        this.abrigo = abrigo;
-    }
-
-    public Adocao getAdocao() {
-        return adocao;
-    }
-
-    public void setAdocao(Adocao adocao) {
-        this.adocao = adocao;
-    }
 }

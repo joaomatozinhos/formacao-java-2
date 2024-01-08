@@ -14,9 +14,8 @@ import br.com.alura.adopet.api.model.TipoPet;
 public class CalculadoraProbabilidadeAdocaoTest {
 
 	@Test
-	void verificarSeGatoCom4AnosE4KgTemProbabilidadeAlta() {
-		// veriidade 4 anos e 4kg - ALTA
-
+	void deveriaRetornarProbabilidadeAltaParaPetComIdadeBaixaEPesoBaixo() {
+		
 		Abrigo abrigo = new Abrigo(new CadastroAbrigoDto("Abrigo feliz", "94999999999", "abrigofeliz@email.com.br"));
 		Pet pet = new Pet(new CadastroPetDto(TipoPet.GATO, "Miau", "Siames", 4, "Cinza", 4.0f), abrigo);
 
@@ -24,6 +23,18 @@ public class CalculadoraProbabilidadeAdocaoTest {
 		ProbabilidadeAdocao probabilidade = calculadora.calcular(pet);
 
 		assertEquals(ProbabilidadeAdocao.ALTA, probabilidade);
+	}
+
+	@Test
+	void deveriaRetornarProbabilidadeMediaParaPetComIdadeAltaEPesoBaixo() {
+
+		Abrigo abrigo = new Abrigo(new CadastroAbrigoDto("Abrigo feliz", "94999999999", "abrigofeliz@email.com.br"));
+		Pet pet = new Pet(new CadastroPetDto(TipoPet.GATO, "Miau", "Siames", 15, "Cinza", 4.0f), abrigo);
+
+		CalculadoraProbabilidadeAdocao calculadora = new CalculadoraProbabilidadeAdocao();
+		ProbabilidadeAdocao probabilidade = calculadora.calcular(pet);
+
+		assertEquals(ProbabilidadeAdocao.MEDIA, probabilidade);
 	}
 
 }

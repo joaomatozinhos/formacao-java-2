@@ -19,4 +19,4 @@ Conteúdos estudados:
   - Princípios SOLID;
   - Padrões de projeto (Design Patterns);
   - Otimização de consultas ao banco de dados;
-  - Testes de unidade com JUnit e Mockito.
+  - Testes unitários automatizados com JUnit e Mockito.

@@ -1,20 +1,16 @@
 package br.com.alura.escola;
 
-import br.com.alura.escola.dominio.aluno.Aluno;
-import br.com.alura.escola.dominio.aluno.AlunoRepository;
-import br.com.alura.escola.dominio.aluno.Cpf;
-import br.com.alura.escola.dominio.aluno.Email;
+import br.com.alura.escola.aplicacao.aluno.matricula.MatricularAluno;
+import br.com.alura.escola.aplicacao.aluno.matricula.MatricularAlunoDto;
 import br.com.alura.escola.infra.aluno.AlunoRepositoryEmMemoria;
 
-public class MatricularAluno {
+public class MatricularAlunoViaLinhaDeComando {
 	public static void main(String[] args) {
 		String nome = "Fulano da Silva";
-		Cpf cpf = new Cpf("123.456.789-00");
-		Email email = new Email("fulano@email.com");
+		String cpf = "123.456.789-00";
+		String email = "fulano@email.com";
 
-		Aluno aluno = new Aluno(cpf, nome, email);
-
-		AlunoRepository repositorio = new AlunoRepositoryEmMemoria();
-		repositorio.matricular(aluno);
+		MatricularAluno matricular = new MatricularAluno(new AlunoRepositoryEmMemoria());
+		matricular.executa(new MatricularAlunoDto(nome, cpf, email));
 	}
 }

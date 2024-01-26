@@ -9,7 +9,7 @@ public class FabricaDeAluno {
 		return this;
 	}
 	
-	public FabricaDeAluno comTelefone(String ddd, String numero) {
+	public FabricaDeAluno comTelefone(String ddd, String numero) throws Exception {
 		this.aluno.adicionarTelefone(ddd, numero);
 		return this;
 	}

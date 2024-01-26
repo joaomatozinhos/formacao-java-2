@@ -69,7 +69,11 @@ public class RepositorioDeAlunosComJDBC implements RepositorioDeAlunos {
 			while (rs.next()) {
 				String numero = rs.getString("numero");
 				String ddd = rs.getString("ddd");
-				encontrado.adicionarTelefone(ddd, numero);
+				try {
+					encontrado.adicionarTelefone(ddd, numero);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			
 			return encontrado;
@@ -99,7 +103,11 @@ public class RepositorioDeAlunosComJDBC implements RepositorioDeAlunos {
 				while (rsTelefone.next()) {
 					String numero = rsTelefone.getString("numero");
 					String ddd = rsTelefone.getString("ddd");
-					aluno.adicionarTelefone(ddd, numero);
+					try {
+						aluno.adicionarTelefone(ddd, numero);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			
 				alunos.add(aluno);

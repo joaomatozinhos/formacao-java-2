@@ -1,9 +1,9 @@
-package br.com.alura.escola.infra.aluno;
+package br.com.alura.escola.academico.infra.aluno;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import br.com.alura.escola.dominio.aluno.CifradorDeSenha;
+import br.com.alura.escola.academico.dominio.aluno.CifradorDeSenha;
 
 public class CifradorDeSenhaComMD5 implements CifradorDeSenha {
 

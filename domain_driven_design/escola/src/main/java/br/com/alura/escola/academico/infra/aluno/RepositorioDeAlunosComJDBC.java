@@ -1,4 +1,4 @@
-package br.com.alura.escola.infra.aluno;
+package br.com.alura.escola.academico.infra.aluno;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.alura.escola.dominio.aluno.Aluno;
-import br.com.alura.escola.dominio.aluno.AlunoNaoEncontrado;
-import br.com.alura.escola.dominio.aluno.CPF;
-import br.com.alura.escola.dominio.aluno.Email;
-import br.com.alura.escola.dominio.aluno.RepositorioDeAlunos;
-import br.com.alura.escola.dominio.aluno.Telefone;
+import br.com.alura.escola.academico.dominio.aluno.Aluno;
+import br.com.alura.escola.academico.dominio.aluno.AlunoNaoEncontrado;
+import br.com.alura.escola.academico.dominio.aluno.CPF;
+import br.com.alura.escola.academico.dominio.aluno.Email;
+import br.com.alura.escola.academico.dominio.aluno.RepositorioDeAlunos;
+import br.com.alura.escola.academico.dominio.aluno.Telefone;
 
 public class RepositorioDeAlunosComJDBC implements RepositorioDeAlunos {
 

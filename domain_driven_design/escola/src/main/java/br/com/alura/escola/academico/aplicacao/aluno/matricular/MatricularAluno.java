@@ -1,9 +1,9 @@
-package br.com.alura.escola.aplicacao.aluno.matricular;
+package br.com.alura.escola.academico.aplicacao.aluno.matricular;
 
-import br.com.alura.escola.dominio.PublicadorDeEventos;
-import br.com.alura.escola.dominio.aluno.Aluno;
-import br.com.alura.escola.dominio.aluno.AlunoMatriculado;
-import br.com.alura.escola.dominio.aluno.RepositorioDeAlunos;
+import br.com.alura.escola.academico.dominio.PublicadorDeEventos;
+import br.com.alura.escola.academico.dominio.aluno.Aluno;
+import br.com.alura.escola.academico.dominio.aluno.AlunoMatriculado;
+import br.com.alura.escola.academico.dominio.aluno.RepositorioDeAlunos;
 
 public class MatricularAluno {
 

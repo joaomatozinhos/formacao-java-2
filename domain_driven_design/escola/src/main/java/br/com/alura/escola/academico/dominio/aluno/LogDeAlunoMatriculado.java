@@ -1,9 +1,9 @@
-package br.com.alura.escola.dominio.aluno;
+package br.com.alura.escola.academico.dominio.aluno;
 
 import java.time.format.DateTimeFormatter;
 
-import br.com.alura.escola.dominio.Evento;
-import br.com.alura.escola.dominio.Ouvinte;
+import br.com.alura.escola.academico.dominio.Evento;
+import br.com.alura.escola.academico.dominio.Ouvinte;
 
 public class LogDeAlunoMatriculado extends Ouvinte {
 

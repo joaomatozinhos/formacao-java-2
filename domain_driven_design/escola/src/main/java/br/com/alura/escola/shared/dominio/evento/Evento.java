@@ -1,4 +1,4 @@
-package br.com.alura.escola.dominio;
+package br.com.alura.escola.academico.dominio;
 
 import java.time.LocalDateTime;
 

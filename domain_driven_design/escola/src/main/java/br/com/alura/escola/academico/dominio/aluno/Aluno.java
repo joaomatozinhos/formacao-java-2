@@ -3,9 +3,11 @@ package br.com.alura.escola.academico.dominio.aluno;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.alura.escola.shared.dominio.Cpf;
+
 public class Aluno {
 
-	private CPF cpf;
+	private Cpf cpf;
 	private String nome;
 
 	private Email email;
@@ -14,7 +16,7 @@ public class Aluno {
 
 	private String senha;
 
-	public Aluno(CPF cpf, String nome, Email email) {
+	public Aluno(Cpf cpf, String nome, Email email) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.email = email;
@@ -28,7 +30,7 @@ public class Aluno {
 		this.telefones.add(new Telefone(ddd, numero));
 	}
 
-	public CPF getCpf() {
+	public Cpf getCpf() {
 		return cpf;
 	}
 

@@ -1,16 +1,16 @@
 package br.com.alura.escola.academico.aplicacao.aluno.matricular;
 
 import br.com.alura.escola.academico.dominio.aluno.Aluno;
-import br.com.alura.escola.academico.dominio.aluno.CPF;
 import br.com.alura.escola.academico.dominio.aluno.Email;
+import br.com.alura.escola.shared.dominio.Cpf;
 
 public class MatricularAlunoDto {
 
 	private String nomeAluno;
-	private CPF cpfAluno;
+	private Cpf cpfAluno;
 	private String emailAluno;
 
-	public MatricularAlunoDto(String nomeAluno, CPF cpfAluno, String emailAluno) {
+	public MatricularAlunoDto(String nomeAluno, Cpf cpfAluno, String emailAluno) {
 		this.nomeAluno = nomeAluno;
 		this.cpfAluno = cpfAluno;
 		this.emailAluno = emailAluno;

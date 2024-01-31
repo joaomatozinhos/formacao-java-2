@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import br.com.alura.escola.academico.aplicacao.aluno.matricular.MatricularAluno;
 import br.com.alura.escola.academico.aplicacao.aluno.matricular.MatricularAlunoDto;
 import br.com.alura.escola.academico.dominio.aluno.Aluno;
-import br.com.alura.escola.academico.dominio.aluno.CPF;
 import br.com.alura.escola.academico.infra.aluno.RepositorioDeAlunosEmMemoria;
+import br.com.alura.escola.shared.dominio.Cpf;
 
 class MatricularAlunoTest {
 
@@ -25,7 +25,7 @@ class MatricularAlunoTest {
 		useCase.executa(dados);
 		
 		Aluno encontrado = repositorio.buscarPorCPF(
-				new CPF("123.456.789-00"));
+				new Cpf("123.456.789-00"));
 		
 		assertEquals("Fulano", encontrado.getNome());
 		assertEquals("123.456.789-00", encontrado.getCpf());

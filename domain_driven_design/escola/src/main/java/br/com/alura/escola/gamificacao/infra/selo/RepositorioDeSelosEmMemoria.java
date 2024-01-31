@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.alura.escola.academico.dominio.aluno.CPF;
 import br.com.alura.escola.gamificacao.dominio.selo.RepositorioDeSelos;
 import br.com.alura.escola.gamificacao.dominio.selo.Selo;
+import br.com.alura.escola.shared.dominio.Cpf;
 
 public class RepositorioDeSelosEmMemoria implements RepositorioDeSelos {
 
@@ -19,7 +19,7 @@ public class RepositorioDeSelosEmMemoria implements RepositorioDeSelos {
 	}
 
 	@Override
-	public List<Selo> selosDoAlunoDeCPF(CPF cpf) {
+	public List<Selo> selosDoAlunoDeCPF(Cpf cpf) {
 		return this.selos.stream().filter(s -> s.getCpfDoAluno().equals(cpf)).collect(Collectors.toList());
 	}
 

@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.escola.academico.dominio.aluno.Aluno;
-import br.com.alura.escola.academico.dominio.aluno.CPF;
 import br.com.alura.escola.academico.dominio.aluno.Email;
 import br.com.alura.escola.academico.dominio.aluno.Telefone;
+import br.com.alura.escola.shared.dominio.Cpf;
 
 class TelefoneTest {
 
@@ -41,7 +41,7 @@ class TelefoneTest {
 
 	@Test
 	void naoDeveriaPermitirAdicionar3Telefones() throws Exception {
-		CPF cpf = new CPF("123.456.789-00");
+		Cpf cpf = new Cpf("123.456.789-00");
 		Email email = new Email("fulano@gmail.com");
 		Aluno aluno = new Aluno(cpf, "fulano", email);
 
